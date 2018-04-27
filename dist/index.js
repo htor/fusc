@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var flipText = function flipText(elem) {
+var fusc = function fusc(elem) {
     var fillChar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '@';
 
     if (elem.dataset.animating === 'true') return;
@@ -74,7 +74,7 @@ var random = function random(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-exports.default = flipText;
+exports.default = fusc;
 
 },{}]},{},[1])(1)
 });
