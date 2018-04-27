@@ -1,6 +1,6 @@
 {
   "name": "fusc",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Replace text inside HTML elements with other characters",
   "main": "dist/index.js",
   "scripts": {
@@ -8,6 +8,10 @@
     "prepublishOnly": "npm run build-js",
     "preexample": "npm run build-js",
     "example": "cd examples/simple; budo -p 8080 -o index.js -- -t [ babelify --presets [ env ] ]"
+  },
+  "repository" : { 
+      "type" : "git",
+      "url" : "https://github.com/htor/fusc.git"
   },
   "author": "htor",
   "license": "MIT",
