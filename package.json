@@ -1,0 +1,21 @@
+{
+  "name": "fusc",
+  "version": "0.0.1",
+  "description": "Replace text inside HTML elements with other characters",
+  "main": "dist/index.js",
+  "scripts": {
+    "build-js": "browserify index.js -s scratch -t [ babelify --presets [ env ] ] > dist/index.js",
+    "prepublish": "npm run build-js",
+    "preexample": "npm run build-js",
+    "example": "cd examples/simple; budo -p 8080 -o index.js -- -t [ babelify --presets [ env ] ]"
+  },
+  "author": "htor",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^16.2.0",
+    "budo": "^11.2.0"
+  }
+}
