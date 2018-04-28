@@ -1,8 +1,20 @@
 {
   "name": "fusc",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Obfuscate text inside HTML elements with other characters",
-  "keywords": "html text obfuscate obfuscation hide element toggle ascii pattern char character",
+  "keywords": [
+    "html",
+    "text",
+    "obfuscate",
+    "obfuscation",
+    "hide",
+    "element",
+    "toggle",
+    "ascii",
+    "pattern",
+    "char",
+    "character"
+  ],
   "main": "dist/index.js",
   "scripts": {
     "build-js": "browserify index.js -s scratch -t [ babelify --presets [ env ] ] > dist/index.js",
@@ -10,9 +22,9 @@
     "preexample": "npm run build-js",
     "example": "cd examples/simple; budo -p 8080 -o index.js -- -t [ babelify --presets [ env ] ]"
   },
-  "repository" : { 
-      "type" : "git",
-      "url" : "https://github.com/htor/fusc.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/htor/fusc.git"
   },
   "author": "htor",
   "license": "MIT",
