@@ -23,7 +23,7 @@ it will obfuscate into:
 ```txt
 @@@@@@@@@@@ @@ @@ @@@@@ @@@ @@@@@@@@@@ @@@@@@@@ @@@@@ @@@ @@@@@@@ @@ @@@@ @@@@@@@@@ @@@ @@@@@@@ @@@@@@@ @@@@ @@@ @@@@@ @@@@@ @@@@@@@ @@@@@@ @@@@@@ @@@@@@@@ @@@@@@ @@@@ @@@ @@@ @@@@@@@ @@@@@@ @@@@ @@@@@@ @@@@@@@@@ @@@@ @@@@@@@@@@@ @@@@@ @@@ @@@@@@@@@@ @@@@@ @@@@@@@@@ @@@@@@@ @@@@@ @@@@@ @@@@@ @@@@@@@ @@@@@@
 ```
-
+Calling `fusc()` again will do the reverse, and the original text will be restored.
 To run an actual example, clone this repo and do:
 ```
 npm run example
