@@ -1,31 +1,33 @@
 # fusc
 
-Replace text inside HTML elements with other characters. It preserves
-the structure of the elements by only mutating text nodes.
+Obfuscate text inside HTML elements with other characters. It preserves
+the structure of the elements by only mutating text nodes, so nested elements
+and inline elements with text should obfuscate just fine.
 
 # example
-
-To see an example, run:
-```
-npm run example
-```
-
-# usage 
-
-To obfuscate a text into a series of @-characters:
-
-```html
-<section class="text">
-    <p>
-        Blanditiis ea qui rerum ab voluptatem molestiae. <a href="http://aut.em">Autem</a> beatae perferendis doloribus aperiam quis voluptate <a href="http://vol.up">voluptatibus</a>. Quia enim quis neque nisi repudiandae cumque.
-    </p>
-</section>
-```
 
 ```js
 import fusc from 'fusc'
 
 window.onclick = () => fusc(document.querySelector('.text'), '@')
+```
+
+Then, given a text:
+
+```txt
+Perferendis et et autem est aspernatur officia. Nulla aut dolorem et quis corporis. Est numquam tenetur eius eos dolor rerum quaerat omnis. Labore corporis itaque illo aut qui dolorem beatae non. Cumque excepturi quam praesentium animi qui cupiditate quod. Molestias tempore animi optio fugit ducimus omnis.
+```
+
+it will obfuscate into:
+
+```txt
+@@@@@@@@@@@ @@ @@ @@@@@ @@@ @@@@@@@@@@ @@@@@@@@ @@@@@ @@@ @@@@@@@ @@ @@@@ @@@@@@@@@ @@@ @@@@@@@ @@@@@@@ @@@@ @@@ @@@@@ @@@@@ @@@@@@@ @@@@@@ @@@@@@ @@@@@@@@ @@@@@@ @@@@ @@@ @@@ @@@@@@@ @@@@@@ @@@@ @@@@@@ @@@@@@@@@ @@@@ @@@@@@@@@@@ @@@@@ @@@ @@@@@@@@@@ @@@@@ @@@@@@@@@ @@@@@@@ @@@@@ @@@@@ @@@@@ @@@@@@@ @@@@@@
+
+```
+
+To run an actual example, clone this repo and do:
+```
+npm run example
 ```
 
 # install

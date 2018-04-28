@@ -1,7 +1,8 @@
 {
   "name": "fusc",
-  "version": "0.0.3",
-  "description": "Replace text inside HTML elements with other characters",
+  "version": "0.0.4",
+  "description": "Obfuscate text inside HTML elements with other characters",
+  "keywords": "html text obfuscate obfuscation hide element toggle ascii pattern char character",
   "main": "dist/index.js",
   "scripts": {
     "build-js": "browserify index.js -s scratch -t [ babelify --presets [ env ] ] > dist/index.js",
