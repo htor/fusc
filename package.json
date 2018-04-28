@@ -1,6 +1,6 @@
 {
   "name": "fusc",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Obfuscate text inside HTML elements with other characters",
   "keywords": [
     "html",
