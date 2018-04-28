@@ -15,13 +15,19 @@ window.onclick = () => fusc(document.querySelector('.text'), '@')
 Then, given a text:
 
 ```txt
-Perferendis et et autem est aspernatur officia. Nulla aut dolorem et quis corporis. Est numquam tenetur eius eos dolor rerum quaerat omnis. Labore corporis itaque illo aut qui dolorem beatae non. Cumque excepturi quam praesentium animi qui cupiditate quod. Molestias tempore animi optio fugit ducimus omnis.
+Perferendis et et autem est aspernatur officia. Nulla aut dolorem et quis corporis. 
+Est numquam tenetur eius eos dolor rerum quaerat omnis. Labore corporis itaque illo 
+aut qui dolorem beatae non. Cumque excepturi quam praesentium animi qui cupiditate 
+quod. Molestias tempore animi optio fugit ducimus omnis.
 ```
 
 it will obfuscate into:
 
 ```txt
-@@@@@@@@@@@ @@ @@ @@@@@ @@@ @@@@@@@@@@ @@@@@@@@ @@@@@ @@@ @@@@@@@ @@ @@@@ @@@@@@@@@ @@@ @@@@@@@ @@@@@@@ @@@@ @@@ @@@@@ @@@@@ @@@@@@@ @@@@@@ @@@@@@ @@@@@@@@ @@@@@@ @@@@ @@@ @@@ @@@@@@@ @@@@@@ @@@@ @@@@@@ @@@@@@@@@ @@@@ @@@@@@@@@@@ @@@@@ @@@ @@@@@@@@@@ @@@@@ @@@@@@@@@ @@@@@@@ @@@@@ @@@@@ @@@@@ @@@@@@@ @@@@@@
+@@@@@@@@@@@ @@ @@ @@@@@ @@@ @@@@@@@@@@ @@@@@@@@ @@@@@ @@@ @@@@@@@ @@ @@@@ @@@@@@@@@ 
+@@@ @@@@@@@ @@@@@@@ @@@@ @@@ @@@@@ @@@@@ @@@@@@@ @@@@@@ @@@@@@ @@@@@@@@ @@@@@@ @@@@ 
+@@@ @@@ @@@@@@@ @@@@@@ @@@@ @@@@@@ @@@@@@@@@ @@@@ @@@@@@@@@@@ @@@@@ @@@ @@@@@@@@@@ 
+@@@@@ @@@@@@@@@ @@@@@@@ @@@@@ @@@@@ @@@@@ @@@@@@@ @@@@@@
 ```
 
 To run an actual example, clone this repo and do:
