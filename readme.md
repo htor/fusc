@@ -1,6 +1,7 @@
 # fusc
 
-Replace text inside HTML elements with other characters. 
+Replace text inside HTML elements with other characters. It preserves
+the structure of the elements by only mutating text nodes.
 
 # example
 
