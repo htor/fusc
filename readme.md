@@ -1,15 +1,16 @@
 # fusc
 
-Obfuscate text inside HTML elements with other characters. It preserves
-the structure of the elements by only mutating text nodes, so nested elements
-and inline elements with text should obfuscate just fine.
+Obfuscate and de-obfuscate text inside HTML elements. 
+fusc transforms the text by replacing each non-whitespace character with another,
+and preserves the HTML structure by only mutating text nodes. Nested elements 
+and inline elements with text will obfuscate just fine.
 
 # example
 
 ```js
 import fusc from 'fusc'
 
-window.onclick = () => fusc(document.querySelector('.text'), '@')
+window.onclick = () => fusc(document.querySelector('.text'), { char: '@' })
 ```
 
 Then, given a text:
@@ -29,11 +30,30 @@ it will obfuscate into:
 @@@ @@@ @@@@@@@ @@@@@@ @@@@ @@@@@@ @@@@@@@@@ @@@@ @@@@@@@@@@@ @@@@@ @@@ @@@@@@@@@@ 
 @@@@@ @@@@@@@@@ @@@@@@@ @@@@@ @@@@@ @@@@@ @@@@@@@ @@@@@@
 ```
-Calling `fusc()` again will do the reverse, and the original text will be restored.
-To run an actual example, clone this repo and do:
+Calling `fusc()` again will apply the reverse transformation and the original text 
+will be restored.
+
+# methods
+
+```js
+import fusc from 'fusc'
 ```
-npm run example
-```
+
+## fusc(element, [opts])
+Obfuscate and de-obfuscate text within an element.
+
+`element`- a HTML element
+
+The options can be:
+
+`opts.char` - the replacement character. Replaces each character in the text. 
+Defaults to `*`.
+
+`opts.transform` - the transform function. Gets passed each character
+in the text and returns a character. Defaults to `char => opts.char`.
+
+`opts.timeout` - a function returning the time in milliseconds 
+waited before running the transformation on each text token. Gets passed in the iteration index of each token. Defaults to `null` which means no timeout.
 
 # install
 

@@ -1,6 +1,6 @@
 {
   "name": "fusc",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Obfuscate text inside HTML elements with other characters",
   "keywords": [
     "html",
@@ -15,12 +15,12 @@
     "char",
     "character"
   ],
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build-js": "browserify index.js -s scratch -t [ babelify --presets [ env ] ] > dist/index.js",
     "prepublishOnly": "npm run build-js",
-    "preexample": "npm run build-js",
-    "example": "cd examples/simple; budo -p 8080 -o index.js -- -t [ babelify --presets [ env ] ]"
+    "example": "cd examples; budo -p 8080 -o index.js -- -t [ babelify --presets [ env ] ]",
+    "test": "browserify tests/*.js -t [ babelify --presets [ env ] ] | tape-run | tap-colorize --info black"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
     "babel-preset-env": "^1.6.1",
     "babelify": "^8.0.0",
     "browserify": "^16.2.0",
-    "budo": "^11.2.0"
+    "budo": "^11.2.0",
+    "tape": "^4.9.0",
+    "tape-run": "^4.0.0"
   }
 }

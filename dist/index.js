@@ -4,76 +4,89 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var fusc = function fusc(elem) {
-    var fillChar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '@';
 
-    if (elem.dataset.animating === 'true') return;
-    elem.dataset.animating = 'true';
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-    // find all text nodes
-    var n = void 0;
-    var textNodes = [];
-    var walk = document.createTreeWalker(elem, NodeFilter.SHOW_TEXT, null, false);
-    while (n = walk.nextNode()) {
-        n.origText = n.origText ? n.origText : n.textContent;
-        n.origStyle = n.origStyle ? n.origStyle : n.parentNode.style;
-        textNodes.push(n);
+var fusc = function fusc(element) {
+    var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    var nodes = [];
+    var walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+
+    var _loop = function _loop() {
+        var textNode = walker.currentNode;
+        textNode.origText = textNode.origText || textNode.textContent;
+        var textParts = textNode.textContent.split(' ');
+        var tokenNodes = textParts.map(function (text, index) {
+            return { textNode: textNode, text: text, index: index,
+                origText: textNode.origText.split(' ')[index] };
+        });
+        nodes.push.apply(nodes, _toConsumableArray(tokenNodes));
+    };
+
+    while (walker.nextNode()) {
+        _loop();
     }
 
-    // iterate over them and replace values
+    opts = Object.assign({
+        char: '*',
+        transform: function transform(char) {
+            return opts.char;
+        },
+        timeout: null
+    }, opts);
 
-    var _loop = function _loop(i) {
-        var node = textNodes[i];
-        var parent = node.parentNode;
-        var tokens = node.textContent.split(' ');
-        var origTokens = node.origText.split(' ');
-        if (elem.dataset.back === 'true') {
-            var _loop2 = function _loop2(_i) {
+    if (element.dataset['fuscFuscing'] === 'true') return;
+    element.dataset['fuscFuscing'] = 'true';
+
+    var _loop2 = function _loop2(i) {
+
+        var fusced = function fusced(isFusced) {
+            if (i < nodes.length - 1) return;
+            element.dataset['fuscFuscing'] = false;
+            element.dataset['fuscDefusc'] = isFusced;
+        };
+
+        var defusc = function defusc(node) {
+            var parts = node.textNode.textContent.split(' ');
+            parts[node.index] = node.origText;
+            node.textNode.textContent = parts.join(' ');
+            fusced(false);
+        };
+
+        var fusc = function fusc(node) {
+            if (node.text === '\n') return fusced(true);
+            var parts = node.textNode.textContent.split(' ');
+            parts[node.index] = node.text.split('').map(opts.transform).join('');
+            node.textNode.textContent = parts.join(' ');
+            fusced(true);
+        };
+
+        if (element.dataset['fuscDefusc'] === 'true') {
+            if (opts.timeout) {
                 setTimeout(function () {
-                    tokens[_i] = origTokens[_i];
-                    node.textContent = tokens.join(' ');
-                    if (_i === tokens.length - 1) {
-                        elem.dataset.animating = 'false';
-                        elem.dataset.back = 'false';
-                        if (parent.nodeName === 'A') parent.style = node.origStyle;
-                    }
-                }, 600 + random(1, 20) * _i);
-            };
-
-            // restore original text
-            for (var _i = 0; _i < tokens.length; _i++) {
-                _loop2(_i);
+                    defusc(nodes[i]);
+                }, opts.timeout(i));
+            } else {
+                defusc(nodes[i]);
             }
         } else {
-            var _loop3 = function _loop3(_i2) {
+            if (opts.timeout) {
                 setTimeout(function () {
-                    parent.style.textDecoration = 'none';
-                    var token = tokens[_i2].trim();
-                    tokens[_i2] = token === '\n' ? token : fillChar.repeat(token.length);
-                    node.textContent = tokens.join(' ');
-                    if (_i2 === tokens.length - 1) {
-                        elem.dataset.animating = 'false';
-                        elem.dataset.back = 'true';
-                    }
-                }, 600 + random(1, 20) * _i2);
-            };
-
-            // fill in characters
-            for (var _i2 = 0; _i2 < tokens.length; _i2++) {
-                _loop3(_i2);
+                    fusc(nodes[i]);
+                }, opts.timeout(i));
+            } else {
+                fusc(nodes[i]);
             }
         }
     };
 
-    for (var i = 0; i < textNodes.length; i++) {
-        _loop(i);
+    for (var i = 0; i < nodes.length; i++) {
+        _loop2(i);
     }
 };
 
-var random = function random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
+//                }, opts.timeout + random(1,20) * i)
 exports.default = fusc;
 
 },{}]},{},[1])(1)
