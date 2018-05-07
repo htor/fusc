@@ -48,22 +48,15 @@ const fusc = (element, opts = {}) => {
             fusced(true)
         }
 
-        if (element.dataset['fuscDefusc'] === 'true') {
-            if (opts.timeout) {
-                setTimeout(() => {
-                    defusc(node)
-                }, opts.timeout(i))
-            } else {
-                defusc(node)
-            }
+        const transform = element.dataset['fuscDefusc'] === 'true' ? defusc : fusc
+
+
+        if (opts.timeout) {
+            setTimeout(() => {
+                transform(node)
+            }, opts.timeout(i))
         } else {
-            if (opts.timeout) {
-                setTimeout(() => {
-                    fusc(node)
-                }, opts.timeout(i))
-            } else {
-                fusc(node)
-            }
+            transform(node)
         }
     })
 }

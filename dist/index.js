@@ -65,22 +65,14 @@ var fusc = function fusc(element) {
             fusced(true);
         };
 
-        if (element.dataset['fuscDefusc'] === 'true') {
-            if (opts.timeout) {
-                setTimeout(function () {
-                    defusc(node);
-                }, opts.timeout(i));
-            } else {
-                defusc(node);
-            }
+        var transform = element.dataset['fuscDefusc'] === 'true' ? defusc : fusc;
+
+        if (opts.timeout) {
+            setTimeout(function () {
+                transform(node);
+            }, opts.timeout(i));
         } else {
-            if (opts.timeout) {
-                setTimeout(function () {
-                    fusc(node);
-                }, opts.timeout(i));
-            } else {
-                fusc(node);
-            }
+            transform(node);
         }
     });
 };

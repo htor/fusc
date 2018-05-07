@@ -1,5 +1,5 @@
 import test from 'tape'
-import fusc from '../'
+import fusc from '../index'
 
 const text = document.createElement('p')
 text.innerText = 'hack the planet!'
