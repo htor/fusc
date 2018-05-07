@@ -1,6 +1,6 @@
 {
   "name": "fusc",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Obfuscate text inside HTML elements with other characters",
   "keywords": [
     "html",
@@ -15,7 +15,7 @@
     "char",
     "character"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build-js": "browserify index.js -s scratch -t [ babelify --presets [ env ] ] > dist/index.js",
     "prepublishOnly": "npm run build-js",
