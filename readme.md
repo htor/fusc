@@ -9,38 +9,21 @@ and inline elements with text will obfuscate just fine.
 
 ```js
 import fusc from 'fusc'
+const text = document.querySelector('.text')
 
-window.onclick = () => fusc(document.querySelector('.text'), { char: '@' })
+text.innerHTML // => '<p>hack the <a href="/planet">planet</a>!</p>'
+fusc(text, { char: '@' })
+text.innerHTML // => '<p>@@@@ @@@ <a href="/planet">@@@@@@</a>@</p>'
+fusc(text)
+text.innerHTML // => '<p>hack the <a href="/planet">planet</a>!</p>'
 ```
-
-Then, given a text:
-
-```txt
-Perferendis et et autem est aspernatur officia. Nulla aut dolorem et quis corporis. 
-Est numquam tenetur eius eos dolor rerum quaerat omnis. Labore corporis itaque illo 
-aut qui dolorem beatae non. Cumque excepturi quam praesentium animi qui cupiditate 
-quod. Molestias tempore animi optio fugit ducimus omnis.
-```
-
-it will obfuscate into:
-
-```txt
-@@@@@@@@@@@ @@ @@ @@@@@ @@@ @@@@@@@@@@ @@@@@@@@ @@@@@ @@@ @@@@@@@ @@ @@@@ @@@@@@@@@ 
-@@@ @@@@@@@ @@@@@@@ @@@@ @@@ @@@@@ @@@@@ @@@@@@@ @@@@@@ @@@@@@ @@@@@@@@ @@@@@@ @@@@ 
-@@@ @@@ @@@@@@@ @@@@@@ @@@@ @@@@@@ @@@@@@@@@ @@@@ @@@@@@@@@@@ @@@@@ @@@ @@@@@@@@@@ 
-@@@@@ @@@@@@@@@ @@@@@@@ @@@@@ @@@@@ @@@@@ @@@@@@@ @@@@@@
-```
-Calling `fusc()` again will apply the reverse transformation and the original text 
-will be restored.
-
 # methods
 
-```js
-import fusc from 'fusc'
-```
-
 ## fusc(element, [opts])
-Obfuscate and de-obfuscate text within an element.
+Obfuscate and de-obfuscate text within an element. 
+First time `fusc()` is called it applies the transformation and the second time
+it's called it applies the reverse transformation and restores the original text.
+
 
 `element`- a HTML element
 

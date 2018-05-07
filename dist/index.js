@@ -12,6 +12,18 @@ var fusc = function fusc(element) {
 
     var nodes = [];
     var walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+    opts = Object.assign({
+        char: '*',
+        transform: function transform(char) {
+            return opts.char;
+        },
+        timeout: null
+    }, opts);
+
+    if (element.dataset['fuscFuscing'] === 'true') return;
+    element.dataset['fuscFuscing'] = 'true';
+
+    // create node data structure for text
 
     var _loop = function _loop() {
         var textNode = walker.currentNode;
@@ -28,18 +40,8 @@ var fusc = function fusc(element) {
         _loop();
     }
 
-    opts = Object.assign({
-        char: '*',
-        transform: function transform(char) {
-            return opts.char;
-        },
-        timeout: null
-    }, opts);
-
-    if (element.dataset['fuscFuscing'] === 'true') return;
-    element.dataset['fuscFuscing'] = 'true';
-
-    var _loop2 = function _loop2(i) {
+    // iterate each node and apply transform
+    nodes.forEach(function (node, i) {
 
         var fusced = function fusced(isFusced) {
             if (i < nodes.length - 1) return;
@@ -56,6 +58,7 @@ var fusc = function fusc(element) {
 
         var fusc = function fusc(node) {
             if (node.text === '\n') return fusced(true);
+            node.text = node.text.trim();
             var parts = node.textNode.textContent.split(' ');
             parts[node.index] = node.text.split('').map(opts.transform).join('');
             node.textNode.textContent = parts.join(' ');
@@ -65,28 +68,23 @@ var fusc = function fusc(element) {
         if (element.dataset['fuscDefusc'] === 'true') {
             if (opts.timeout) {
                 setTimeout(function () {
-                    defusc(nodes[i]);
+                    defusc(node);
                 }, opts.timeout(i));
             } else {
-                defusc(nodes[i]);
+                defusc(node);
             }
         } else {
             if (opts.timeout) {
                 setTimeout(function () {
-                    fusc(nodes[i]);
+                    fusc(node);
                 }, opts.timeout(i));
             } else {
-                fusc(nodes[i]);
+                fusc(node);
             }
         }
-    };
-
-    for (var i = 0; i < nodes.length; i++) {
-        _loop2(i);
-    }
+    });
 };
 
-//                }, opts.timeout + random(1,20) * i)
 exports.default = fusc;
 
 },{}]},{},[1])(1)
